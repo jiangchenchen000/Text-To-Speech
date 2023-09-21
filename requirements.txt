@@ -2,3 +2,4 @@ streamlit
 gtts
 PyPDF2
 python-docx
+base64
