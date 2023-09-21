@@ -69,8 +69,9 @@ def main():
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as fp:
                     tts.save(fp.name)
                     st.audio(fp.name, format="audio/mp3")
-                    st.download_button("Download Audio", fp.name, key='audio_download')
-                    st.write('<span style="color: red;">Note: The downloaded file is a text file.Paste the path in the explorer to get the audio file.</span>', unsafe_allow_html=True)
+                    # st.download_button("Download Audio", fp.name, key='audio_download')
+                    st.markdown(get_binary_file_downloader_html(fp.name, "Download Audio", "mp3"), unsafe_allow_html=True)
+                    # st.write('<span style="color: red;">Note: The downloaded file is a text file.Paste the path in the explorer to get the audio file.</span>', unsafe_allow_html=True)
 
                     # st.write(
                     #     "Note: The downloaded file is a text file. "
@@ -78,6 +79,13 @@ def main():
                     # )
         else:
             st.warning("Please enter some text or upload a document to convert.")
+
+def get_binary_file_downloader_html(file_path, label="Download", key="default"):
+    with open(file_path, "rb") as file:
+        data = file.read()
+    b64 = base64.b64encode(data).decode()
+    href = f'data:application/octet-stream;base64,{b64}'
+    return f'<a href="{href}" download="{key}.mp3">{label}</a>'
 
 if __name__ == '__main__':
     main()
