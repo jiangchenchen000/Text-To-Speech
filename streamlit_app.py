@@ -3,6 +3,7 @@ from gtts import gTTS
 import tempfile
 from PyPDF2 import PdfReader
 import docx
+import base64
 
 st.set_page_config(
     page_title="Text-to-Speech",
