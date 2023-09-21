@@ -3,7 +3,7 @@ from gtts import gTTS
 import tempfile
 from PyPDF2 import PdfReader
 import docx
-import base64
+import pybase64
 
 st.set_page_config(
     page_title="Text-to-Speech",
@@ -84,7 +84,7 @@ def main():
 def get_binary_file_downloader_html(file_path, label="Download", key="default"):
     with open(file_path, "rb") as file:
         data = file.read()
-    b64 = base64.b64encode(data).decode()
+    b64 = pybase64.b64encode(data).decode()
     href = f'data:application/octet-stream;base64,{b64}'
     return f'<a href="{href}" download="{key}.mp3">{label}</a>'
 
