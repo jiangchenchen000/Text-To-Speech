@@ -2,4 +2,4 @@ streamlit
 gtts
 PyPDF2
 python-docx
-base64
+pybase64==0.2.0
