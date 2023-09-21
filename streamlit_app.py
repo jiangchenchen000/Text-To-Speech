@@ -44,13 +44,13 @@ def main():
 
     # Create a sidebar for radio options
     st.sidebar.title("Options")
-    text_input_method = st.sidebar.radio("Select the text input method:", ("Type text", "Upload a document"))
+    text_input_method = st.sidebar.radio("Select the text input method:", ("Text", "Document"))
 
     # Get user input based on the radio option selected
-    if text_input_method == "Type text":
+    if text_input_method == "Text":
         text = st.text_area("Enter the text you want to convert to speech:")
     else:
-        file = st.file_uploader("Upload a document (PDF or DOCX):", type=["pdf", "docx"])
+        file = st.file_uploader("Document (PDF or DOCX):", type=["pdf", "docx"])
         if file:
             if file.type == "application/pdf":
                 text = read_pdf(file)
